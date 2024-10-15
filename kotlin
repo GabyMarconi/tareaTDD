@@ -1,0 +1,25 @@
+fun calcularMedia(datos: List<Double>): Double? {
+    return if (datos.isEmpty()) null else datos.average()
+}
+
+fun calcularDesviacionEstandar(datos: List<Double>): Double? {
+    if (datos.isEmpty()) return null
+    val media = calcularMedia(datos) ?: return null
+    val varianza = datos.map { (it - media) * (it - media) }.sum() / (datos.size - 1)
+    return Math.sqrt(varianza)
+}
+
+// Pruebas
+fun main() {
+    val datosVacios = listOf<Double>()
+    println("Media: ${calcularMedia(datosVacios)}") // null
+    println("Desviación Estándar: ${calcularDesviacionEstandar(datosVacios)}") // null
+
+    val datosUnElemento = listOf(5.0)
+    println("Media: ${calcularMedia(datosUnElemento)}") // 5.0
+    println("Desviación Estándar: ${calcularDesviacionEstandar(datosUnElemento)}") // 0.0
+
+    val datosMultiples = listOf(1.0, 2.0, 3.0, 4.0, 5.0)
+    println("Media: ${calcularMedia(datosMultiples)}") // 3.0
+    println("Desviación Estándar: ${calcularDesviacionEstandar(datosMultiples)}") // 1.4142135623730951
+}
