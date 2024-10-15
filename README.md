@@ -13,6 +13,7 @@ Este proyecto implementa el cálculo de la media y la desviación estándar de u
 - Go
 - Swift
 - Kotlin
+- Ruby
 
 ## Funcionalidades
 
