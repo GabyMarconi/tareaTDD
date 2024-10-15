@@ -1,0 +1,35 @@
+using System;
+using System.Linq;
+
+public class Estadisticas
+{
+    public static double? CalcularMedia(double[] datos)
+    {
+        if (datos.Length == 0) return null;
+        return datos.Average();
+    }
+
+    public static double? CalcularDesviacionEstandar(double[] datos)
+    {
+        if (datos.Length == 0) return null;
+        double media = CalcularMedia(datos) ?? 0;
+        double varianza = datos.Select(x => Math.Pow(x - media, 2)).Sum() / (datos.Length - 1);
+        return Math.Sqrt(varianza);
+    }
+
+    public static void Main()
+    {
+        // Pruebas
+        double[] datosVacios = {};
+        Console.WriteLine("Media: " + CalcularMedia(datosVacios)); // null
+        Console.WriteLine("Desviación Estándar: " + CalcularDesviacionEstandar(datosVacios)); // null
+
+        double[] datosUnElemento = {5};
+        Console.WriteLine("Media: " + CalcularMedia(datosUnElemento)); // 5
+        Console.WriteLine("Desviación Estándar: " + CalcularDesviacionEstandar(datosUnElemento)); // 0
+
+        double[] datosMultiples = {1, 2, 3, 4, 5};
+        Console.WriteLine("Media: " + CalcularMedia(datosMultiples)); // 3
+        Console.WriteLine("Desviación Estándar: " + CalcularDesviacionEstandar(datosMultiples)); // 1.4142135623730951
+    }
+}
